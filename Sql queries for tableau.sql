@@ -17,7 +17,7 @@ from coviddeathscsv
 where continent is not null 
 order by 1,2;
 
---- 2. This are not included in the above queries and for staying consistent
+--- 2. Total Deaths per Continent
 
 
 select location, Sum(cast(new_deaths as signed)) as TotalDeathCount
@@ -27,7 +27,7 @@ and location not in ('World', 'European Union', 'International')
 group by location
 order by TotalDeathCount desc;
 
---- 3 
+--- 3 Percent Population Infected Per Country
 
  select location, population, max(total_cases) as 
  HighestInfectionCount, Max((total_cases/population))*100
@@ -36,7 +36,7 @@ order by TotalDeathCount desc;
  group by location, population
  order by PercentPopulationInfected desc;
  
- --- 4 
+ --- 4 Percent Popolation Infected
  
   select location, population, date, max(total_cases) as 
  HighestInfectionCount, Max((total_cases/population))*100
